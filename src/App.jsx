@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ConnectWallet from "./components/ConnectWallet";
 
 function App() {
   const [walletAddress, setWalletAddress] = useState("");
   const [isRequesting, setIsRequesting] = useState(false);
+
+  useEffect(() => {
+    const savedWalletAddress = localStorage.getItem("walletAddress");
+    if (savedWalletAddress) {
+      setWalletAddress(savedWalletAddress);
+    }
+  }, []);
 
   const handleRequestTokens = () => {
     setIsRequesting(true);
