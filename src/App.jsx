@@ -7,18 +7,7 @@ function App() {
   const [walletAddress, setWalletAddress] = useState("");
   const [isRequesting, setIsRequesting] = useState(false);
 
-<<<<<<< HEAD
   const handleRequestTokens = async () => {
-=======
-  useEffect(() => {
-    const savedWalletAddress = localStorage.getItem("walletAddress");
-    if (savedWalletAddress) {
-      setWalletAddress(savedWalletAddress);
-    }
-  }, []);
-
-  const handleRequestTokens = () => {
->>>>>>> 09b663f2d71c2a9057823ea5f78bcc0f855eed6b
     setIsRequesting(true);
     // Handle the token request process here. I used a set timeout as a placeholder
     const { tx, tokenSent } = await requestTokens(walletAddress);
