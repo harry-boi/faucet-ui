@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import ConnectWallet from "./components/ConnectWallet";
-import {requestTokens} from "./utils/utils";
+import { requestTokens } from "./utils/utils";
 
 function App() {
   const [walletAddress, setWalletAddress] = useState("");
   const [isRequesting, setIsRequesting] = useState(false);
 
-<<<<<<< HEAD
-  const handleRequestTokens = async () => {
-=======
   useEffect(() => {
     const savedWalletAddress = localStorage.getItem("walletAddress");
     if (savedWalletAddress) {
@@ -17,8 +14,7 @@ function App() {
     }
   }, []);
 
-  const handleRequestTokens = () => {
->>>>>>> 09b663f2d71c2a9057823ea5f78bcc0f855eed6b
+  const handleRequestTokens = async () => {
     setIsRequesting(true);
     // Handle the token request process here. I used a set timeout as a placeholder
     const { tx, tokenSent } = await requestTokens(walletAddress);
@@ -27,7 +23,6 @@ function App() {
     } else {
       alert(`Tokens sent to ${walletAddress}`);
     }
-    setWalletAddress("");
     setIsRequesting(false);
   };
 

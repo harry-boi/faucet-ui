@@ -21,7 +21,7 @@ const ConnectWallet = ({ walletAddress, setWalletAddress }) => {
         console.error("An error occurrred", error);
       }
     } else {
-      setWalletAddress(" ");
+      setWalletAddress("");
       localStorage.removeItem("walletAddress");
       alert("Wallet disconnected successfully");
     }
