@@ -19,7 +19,8 @@ function App() {
   }, []);
 
   const generateCaptcha = () => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const chars =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let captcha = "";
     for (let i = 0; i < 6; i++) {
       captcha += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -61,7 +62,7 @@ function App() {
       <div className="min-h-screen flex flex-col items-center justify-center">
         <div className="max-w-lg w-full bg-white rounded-lg shadow-lg p-8 text-gray-800">
           <h1 className="text-2xl font-semibold text-center mb-6">
-            Token Faucet
+            CodeToken Faucet
           </h1>
           <p className="text-center text-gray-600 mb-8">
             Enter your wallet address below to receive test tokens.
@@ -85,11 +86,11 @@ function App() {
             onChange={handleCaptchaInput}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-6"
           />
-          
+
           <button
             onClick={handleRequestTokens}
             disabled={!walletAddress || isRequesting}
-            className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 ${
+            className={`w-full text-white py-3 rounded-lg font-semibold transition-all duration-200 ${
               isRequesting
                 ? "bg-gray-300 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
@@ -99,8 +100,8 @@ function App() {
           </button>
 
           <div className="text-center text-sm text-gray-500 mt-6">
-            This faucet is for test purposes only. Please ensure your address is
-            correct.
+            Connect your wallet to earn free codeTokens. EVM compatible wallets
+            only.
           </div>
         </div>
       </div>
