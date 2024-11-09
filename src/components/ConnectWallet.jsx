@@ -15,12 +15,14 @@ const ConnectWallet = ({ walletAddress, setWalletAddress }) => {
         const signer = await provider.getSigner();
         const address = await signer.getAddress();
         setWalletAddress(address);
+        localStorage.setItem("walletAddress", address);
         console.log("wallet connected successfully");
       } catch (error) {
         console.error("An error occurrred", error);
       }
     } else {
-      setWalletAddress(null);
+      setWalletAddress(" ");
+      localStorage.removeItem("walletAddress");
       alert("Wallet disconnected successfully");
     }
   };
