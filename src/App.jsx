@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import ConnectWallet from "./components/ConnectWallet";
-import { requestTokens } from "./utils/utils";
+import { requestTokens,checkTimeLeftToClaim,convertSeconds } from "./utils/utils";
 
 function App() {
   const [walletAddress, setWalletAddress] = useState("");
@@ -45,7 +45,8 @@ function App() {
     // Handle the token request process here
     const { tx, tokenSent } = await requestTokens(walletAddress);
     if (!tokenSent) {
-      alert(`Tokens claim failed. Please try again after 24 hours.`);
+      const {timeLeft} = await checkTimeLeftToClaim(walletAddress);
+      alert(`Tokens claim failed. Please try again after ${convertSeconds(timeLeft)}.`);
     } else {
       alert(`Tokens sent to ${walletAddress}`);
     }
@@ -77,7 +78,7 @@ function App() {
           />
 
           <div className="mb-6 text-center">
-            <span className="font-mono text-lg">{captcha}</span>
+            <span className="font-mono text-lg">Captcha: {captcha}</span>
           </div>
           <input
             type="text"
@@ -100,7 +101,7 @@ function App() {
           </button>
 
           <div className="text-center text-sm text-gray-500 mt-6">
-            Connect your wallet to earn free codeTokens. EVM compatible wallets
+            Connect your wallet to earn free CodeTokens. EVM compatible wallets
             only.
           </div>
         </div>
