@@ -1,19 +1,23 @@
 import { useState } from "react";
 import "./App.css";
 import ConnectWallet from "./components/ConnectWallet";
+import {requestTokens} from "./utils/utils";
 
 function App() {
   const [walletAddress, setWalletAddress] = useState("");
   const [isRequesting, setIsRequesting] = useState(false);
 
-  const handleRequestTokens = () => {
+  const handleRequestTokens = async () => {
     setIsRequesting(true);
     // Handle the token request process here. I used a set timeout as a placeholder
-    setTimeout(() => {
+    const { tx, tokenSent } = await requestTokens(walletAddress);
+    if (!tokenSent) {
+      alert(`Tokens claim failed,You should try again after 24 hours`);
+    } else {
       alert(`Tokens sent to ${walletAddress}`);
-      setWalletAddress("");
-      setIsRequesting(false);
-    }, 2000);
+    }
+    setWalletAddress("");
+    setIsRequesting(false);
   };
 
   return (
